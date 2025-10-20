@@ -106,7 +106,8 @@
                         <h1>​បញ្ជីឈ្មោះអ្នកគ្រប់គ្រង <small style="color: rgb(0, 60, 255)">({{ $getRecord->count() }} នាក់)</small></h1>
                     </div>
                     <div class="col-sm-6" style="text-align: right;">
-                        <a href="{{ url('admin/admin/add') }}" class="btn btn-primary">បន្ថែមអ្នកគ្រប់គ្រងថ្មី</a>
+                        <a href="{{ url('admin/admin/add') }}" class="btn btn-primary">
+                            <i class="fas fa-plus"></i> បន្ថែមអ្នកគ្រប់គ្រងថ្មី</a>
                     </div>
                 </div>
             </div>

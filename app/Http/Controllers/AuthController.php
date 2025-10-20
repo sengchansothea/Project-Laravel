@@ -14,15 +14,21 @@ class AuthController extends Controller
 {
     public function login()
     {
-       //dd(Hash::make('123456'));
+        //dd(Hash::make('123456'));
         if (!empty(Auth::check())) {
-            if (Auth::user()->user_type == 1) {
+           if (Auth::user()->user_type == 1) {
                 return redirect('admin/dashboard');
             } else if (Auth::user()->user_type == 2) {
-                return redirect('systemAdmin/dashboard');
+                return redirect('deptAdmin/dashboard');
             } else if (Auth::user()->user_type == 3) {
-                return redirect('mession/dashboard');
+                return redirect('CEO/dashboard');
             } else if (Auth::user()->user_type == 4) {
+                return redirect('HR_manager/dashboard');
+            } else if (Auth::user()->user_type == 5) {
+                return redirect('CFO/dashboard');
+            } else if (Auth::user()->user_type == 6) {
+                return redirect('teamleader/dashboard');
+            } else if (Auth::user()->user_type == 7) {
                 return redirect('employee/dashboard');
             }
         }

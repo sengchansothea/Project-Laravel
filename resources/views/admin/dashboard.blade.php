@@ -21,32 +21,15 @@
                     <div class="row">
                         <div class="col-lg-3 col-6">
                             <!-- small box -->
-                            <div class="small-box bg-info">
-                                <div class="inner">
-                                    <h3>{{ \App\Models\User::where('user_type', 1)->where('is_deleted', 0)->count() }} ​នាក់</h3>
-                                    {{-- <h3>{{$admin_count}}</h3> --}}
-                                    <p>អ្នកគ្រប់គ្រង</p>
-                                </div>
-                                <div class="icon">
-                                    <i class="ion ion-bag"></i>
-                                </div>
-                                <a href="{{ url('admin/admin/list') }}" class="small-box-footer">More info <i
-                                        class="fas fa-arrow-circle-right"></i></a>
-                            </div>
-                        </div>
-                        <!-- ./col -->
-                        <div class="col-lg-3 col-6">
-                            <!-- small box -->
                             <div class="small-box bg-success">
                                 <div class="inner">
-                                    <h3>53<sup style="font-size: 20px">%</sup></h3>
-
-                                    <p>Bounce Rate</p>
+                                    <h3>Department Admin</h3>
+                                    <p>{{ \App\Models\User::where('user_type', 2)->where('is_deleted', 0)->count() }} ​នាក់</p>
                                 </div>
                                 <div class="icon">
                                     <i class="ion ion-stats-bars"></i>
                                 </div>
-                                <a href="#" class="small-box-footer">More info <i
+                                <a href="{{ url('admin/department_admin/list') }}" class="small-box-footer">More info <i
                                         class="fas fa-arrow-circle-right"></i></a>
                             </div>
                         </div>
@@ -55,14 +38,13 @@
                             <!-- small box -->
                             <div class="small-box bg-warning">
                                 <div class="inner">
-                                    <h3>44</h3>
-
-                                    <p>User Registrations</p>
+                                    <h3>CEO</h3>
+                                    <p>{{ \App\Models\User::where('user_type', 3)->where('is_deleted', 0)->count() }} ​នាក់</p>
                                 </div>
                                 <div class="icon">
                                     <i class="ion ion-person-add"></i>
                                 </div>
-                                <a href="#" class="small-box-footer">More info <i
+                                <a href="{{ url('admin/CEO/list') }}" class="small-box-footer">More info <i
                                         class="fas fa-arrow-circle-right"></i></a>
                             </div>
                         </div>
@@ -71,14 +53,93 @@
                             <!-- small box -->
                             <div class="small-box bg-danger">
                                 <div class="inner">
-                                    <h3>65</h3>
+                                    <h3>HR Manager</h3>
 
-                                    <p>Unique Visitors</p>
+                                    <p>{{ \App\Models\User::where('user_type', 4)->where('is_deleted', 0)->count() }} ​នាក់</p>
                                 </div>
                                 <div class="icon">
                                     <i class="ion ion-pie-graph"></i>
                                 </div>
-                                <a href="#" class="small-box-footer">More info <i
+                                <a href="{{ url('admin/HR_manager/list') }}" class="small-box-footer">More info <i
+                                        class="fas fa-arrow-circle-right"></i></a>
+                            </div>
+                        </div>
+                        <!-- ./col -->
+                        <div class="col-lg-3 col-6">
+                            <!-- small box -->
+                            <div class="small-box bg-indigo">
+                                <div class="inner">
+                                    <h3>CFO</h3>
+
+                                    <p>{{ \App\Models\User::where('user_type', 5)->where('is_deleted', 0)->count() }} ​នាក់</p>
+                                </div>
+                                <div class="icon">
+                                    <i class="ion ion-pie-graph"></i>
+                                </div>
+                                <a href="{{ url('admin/CFO/list') }}" class="small-box-footer">More info <i
+                                        class="fas fa-arrow-circle-right"></i></a>
+                            </div>
+                        </div>
+                        <!-- ./col -->
+                        <div class="col-lg-3 col-6">
+                            <!-- small box -->
+                            <div class="small-box bg-lightblue">
+                                <div class="inner">
+                                    <h3>Team Leader</h3>
+
+                                    <p>{{ \App\Models\User::where('user_type', 6)->where('is_deleted', 0)->count() }} ​នាក់</p>
+                                </div>
+                                <div class="icon">
+                                    <i class="ion ion-pie-graph"></i>
+                                </div>
+                                <a href="{{ url('admin/teamleader/list') }}" class="small-box-footer">More info <i
+                                        class="fas fa-arrow-circle-right"></i></a>
+                            </div>
+                        </div>
+                        <!-- ./col -->
+                        <div class="col-lg-3 col-6">
+                            <!-- small box -->
+                            <div class="small-box bg-fuchsia">
+                                <div class="inner">
+                                    <h3>Employee</h3>
+
+                                    <p>{{ \App\Models\User::where('user_type', 7)->where('is_deleted', 0)->count() }} ​នាក់</p>
+                                </div>
+                                <div class="icon">
+                                    <i class="ion ion-pie-graph"></i>
+                                </div>
+                                <a href="{{ url('admin/employee/list') }}" class="small-box-footer">More info <i
+                                        class="fas fa-arrow-circle-right"></i></a>
+                            </div>
+                        </div>
+                        <!-- ./col -->
+                        <div class="col-lg-3 col-6">
+                            <!-- small box -->
+                            <div class="small-box bg-lime">
+                                <div class="inner">
+                                    <h3>អ្នកស្នើ Leave</h3>
+
+                                    <p>{{\App\Models\RequestModel::where('type_request', '=' , 'Leave')->count()}} នាក់</p>
+                                </div>
+                                <div class="icon">
+                                    <i class="ion ion-pie-graph"></i>
+                                </div>
+                                <a href="{{ url('admin/leave/list') }}" class="small-box-footer">More info <i
+                                        class="fas fa-arrow-circle-right"></i></a>
+                            </div>
+                        </div>
+                        <!-- ./col -->
+                        <div class="col-lg-3 col-6">
+                            <!-- small box -->
+                            <div class="small-box bg-info">
+                                <div class="inner">
+                                    <h3>អ្នកស្មើ Mession</h3>
+                                    <p>{{\App\Models\RequestModel::where('type_request', '=' , 'Mession')->count()}} នាក់</p>
+                                </div>
+                                <div class="icon">
+                                    <i class="ion ion-bag"></i>
+                                </div>
+                                <a href="{{ url('admin/mession/list') }}" class="small-box-footer">More info <i
                                         class="fas fa-arrow-circle-right"></i></a>
                             </div>
                         </div>

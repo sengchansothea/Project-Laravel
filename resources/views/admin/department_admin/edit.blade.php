@@ -6,7 +6,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>បន្ថែមឈ្មោះ Department Admin ថ្មី</h1>
+                        <h1>កែប្រែឈ្មោះ Department Admin ថ្មី</h1>
                     </div>
                 </div>
             </div>
@@ -56,8 +56,8 @@
                                             <label>ស្ថានភាពគ្រួសារ</span></label>
                                            <select name="marital_status" class="form-control">
                                                 <option value="">ជ្រើសរើសស្ថានភាពគ្រួសារ</option>
-                                                <option {{ ($getRecord->marital_status == 'Family') ? 'selected' : '' }} value="Family">មានគ្រួសារ</option>
-                                                <option {{ ($getRecord->marital_status == 'Single') ? 'selected' : '' }} value="Single">នៅលីវ</option>
+                                                <option {{ ($getRecord->marital_status == 'Married') ? 'selected' : '' }} value="Married">បានរៀបការហើយ</option>
+                                                <option {{ ($getRecord->marital_status == 'Single') ? 'selected' : '' }} value="Single">អនីតិជន</option>
                                                 <option {{ ($getRecord->marital_status == 'Other') ? 'selected' : '' }}value="Other">ផ្សេងៗ</option>
                                             </select>
                                         </div>
@@ -75,10 +75,8 @@
                                             <label>ស្ថានភាព<span style="color: red">*</span></label>
                                             <select name="status" class="form-control">
                                                 <option value="">សូមជ្រើសរើស</option>
-                                                <option {{ $getRecord->status == '0' ? 'selected' : '' }} value="0">សកម្ម
-                                                </option>
-                                                <option {{ $getRecord->status == '1' ? 'selected' : '' }} value="1">
-                                                    អសកម្ម</option>
+                                                <option {{ $getRecord->status == '0' ? 'selected' : '' }} value="0">បានអនុម័ត</option>
+                                                <option {{ $getRecord->status == '1' ? 'selected' : '' }} value="1">កំពុងរង់ចាំ</option>
                                             </select>
                                             <div style="color:red;">{{ $errors->first('status') }}</div>
                                         </div>

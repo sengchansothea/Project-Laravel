@@ -46,6 +46,7 @@ class DeptAdminController extends Controller
             $deptAdmin->date_of_joining = $request->date_of_joining;
         }
         $deptAdmin->status = $request->status;
+        $deptAdmin->work_flow = $request->work_flow;
         $deptAdmin->province = $request->province;
         if (!empty($request->file('profile_pic'))) {
             $file = $request->file('profile_pic');
@@ -62,7 +63,7 @@ class DeptAdminController extends Controller
         
         $deptAdmin->save();
 
-        return redirect('admin/department_admin/list')->with('success', 'User added successfully.');
+        return redirect('admin/department_admin/list')->with('success', 'Department Admin added successfully.');
     }
 
     public function edit($id)
@@ -70,7 +71,7 @@ class DeptAdminController extends Controller
         $data['getRecord'] = User::getSingle($id);
         if(!empty($data['getRecord']))
         {
-            $data['header_title'] = "Edit HR";
+            $data['header_title'] = "Edit Dept Admin";
                 return view('admin.department_admin.edit', $data);
         }
         else
@@ -84,7 +85,6 @@ class DeptAdminController extends Controller
         //dd($request->all());
         request()->validate([
             'email' => 'required|email|unique:users,email,' . $id,
-            'phone_number' => 'max:12|min:9',
             'marital_status' => 'max:25'
         ]);
 
@@ -123,7 +123,7 @@ class DeptAdminController extends Controller
 
         $deptAdmin->save();
 
-        return redirect('admin/department_admin/list')->with('success', 'Teacher edited successfully.');
+        return redirect('admin/department_admin/list')->with('success', 'Department Admin edited successfully.');
     }
 
     public function delete($id)
@@ -132,6 +132,13 @@ class DeptAdminController extends Controller
         $user->is_deleted = 1;
         $user->save();
 
-        return redirect('admin/department_admin/list')->with('success', 'Admin deleted successfully.');
+        return redirect('admin/department_admin/list')->with('success', 'Department Admin deleted successfully.');
+    }
+    
+    public function CEO()
+    {
+        $data['getRecord'] = User::getDepartmentAdmins();
+        $data['header_title'] = "Dept Admin CEO";
+        return view('dept_admin.department_IT.CEO_list', $data);
     }
 }

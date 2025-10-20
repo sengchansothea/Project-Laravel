@@ -24,9 +24,13 @@
                             <form method="POST">
                                 @csrf
                                 <div class="card-body">
+                                   <div class="form-group">
+                                        <label>នាមត្រកូល</label>
+                                        <input type="text" name="name" value="{{ old('name', $getRecord->name) }}" class="form-control" placeholder="បញ្ចូលឈ្មោះ" required> 
+                                    </div>
                                     <div class="form-group">
-                                        <label>ឈ្មោះ</label>
-                                        <input type="text" name="name" value="{{ old('name', $getRecord->name) }}  {{old('last_name', $getRecord->last_name) }}" class="form-control" placeholder="បញ្ចូលឈ្មោះ" required> 
+                                        <label>នាមខ្លួន</label>
+                                        <input type="text" name="last_name" value="{{old('last_name', $getRecord->last_name) }}" class="form-control" placeholder="បញ្ចូលឈ្មោះ" required> 
                                     </div>
                                     <div class="form-group">
                                         <label>អ៊ីមែល</label>

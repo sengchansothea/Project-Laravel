@@ -1,0 +1,254 @@
+@extends('layout.app')
+
+@section('style')
+    <style>
+         .req-leave, .req-mession {
+            font-size: 13px;
+            padding: 4px 12px;
+            border-radius: 6px;
+            font-weight: 500;
+            display: inline-block;
+            min-width: 110px;
+            text-align: center;
+        }
+
+        /* Leave Request */
+        .req-leave {
+            background-color: #fff3cd; /* ផ្ទៃលឿងខ្ចី */
+            color: #b08a1b; /* អក្សរលឿង */
+            border: 1px solid #ffeeba;
+        }
+
+        /* Overtime Request */
+        .req-mession {
+            background-color: #e3f2fd; /* ផ្ទៃខៀវខ្ចី */
+            color: #0d47a1; /* អក្សរខៀវ */
+            border: 1px solid #90caf9;
+        }
+
+        .img-circle {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            /* កាត់ជារង្វង់ */
+            object-fit: cover;
+            /* កាត់អោយស្មើ */
+            display: block;
+            /* កែ inline element → block */
+            margin-left: auto;
+            /* ចំកណ្ដាលផ្ដេក */
+            margin-right: auto;
+        }
+
+        td.center-image {
+            text-align: center;
+            /* កណ្ដាលផ្ដេក */
+            vertical-align: middle;
+            /* កណ្ដាលឈរ */
+        }
+        /* Table Design */
+        .table {
+            border-collapse: separate;
+            border-spacing: 0;
+            font-size: 14px;
+            width: 100%;
+        }
+
+        .table th {
+            background-color: #f1f5f9;
+            font-weight: bold;
+            text-align: center;
+            vertical-align: middle;
+            padding: 10px;
+        }
+
+        .table td {
+            text-align: center;
+            vertical-align: middle;
+            padding: 8px 10px;
+        }
+
+        .table tbody tr:nth-child(even) {
+            background-color: #f9fafb;
+        }
+
+        .table tbody tr:hover {
+            background-color: #e6f7ff;
+            transition: background-color 0.2s ease-in-out;
+        }
+
+        /* Status Tag */
+        .status-active,
+        .status-inactive {
+            font-size: 13px;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-weight: 500;
+            display: inline-block;
+            min-width: 90px;
+            text-align: center;
+        }
+
+        .status-active {
+            background-color: #d4edda;
+            color: #155724;
+        }
+
+        .status-inactive {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+
+        /* Buttons */
+        .btn-sm {
+            padding: 4px 10px;
+            border-radius: 8px;
+        }
+
+        .btn-sm i {
+            margin-right: 4px;
+        }
+
+        /* Card Style */
+        .card {
+            border-radius: 12px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+        }
+
+        .card-header {
+            background: #f8fafc;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        /* Pagination */
+        .pagination {
+            margin: 0;
+        }
+
+        .pagination li a,
+        .pagination li span {
+            border-radius: 6px !important;
+            padding: 6px 12px;
+            margin: 0 2px;
+        }
+
+        /* Department Tag Style */
+        .dept-it,.dept-sales {
+            font-size: 13px;
+            padding: 4px 12px;
+            border-radius: 6px;
+            font-weight: 500;
+            display: inline-block;
+            min-width: 110px;
+            text-align: center;
+        }
+
+        /* ពណ៌សម្រាប់ IT */
+        .dept-it {
+            background-color: #e0f7fa; /* ផ្ទៃទឹកសមុទ្រ​ខ្ចីៗ */
+            color: #00695c; /* អក្សរទឹកសមុទ្រ */
+            border: 1px solid #00acc1;
+        }
+
+        /* ពណ៌សម្រាប់ Sales */
+        .dept-sales {
+            background-color: #e8f5e9; /* ផ្ទៃបៃតងខ្ចី */
+            color: #2e7d32; /* អក្សរបៃតង */
+            border: 1px solid #81c784;
+        }
+
+        /* Khmer Font */
+        .language_kh * {
+            font-family: 'Siemreap', 'Inter', system-ui, sans-serif !important;
+        }
+    </style>
+@endsection
+
+@section('content')
+    <div class="content-wrapper">
+        <section class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1>My departments & Type Request<small style="color: rgb(0, 60, 255)"></small></h1>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+            <div class="container-fluid">
+
+                @include('message')
+
+                <div class="card card-purple">
+                        <div class="card-header">
+                            <h3 class="card-title">My departments & Type Request</h3>
+                            <div class="card-tools text-right mb-2">
+                                <a href="{{ url('admin/CEO/export-csv') }}" class="btn btn-outline-primary btn-sm">
+                                    <i class="fas fa-file-csv"></i> CSV
+                                </a>
+                                <a href="{{ url('admin/CEO/export-excel') }}" class="btn btn-outline-success btn-sm">
+                                    <i class="fas fa-file-excel"></i> Excel
+                                </a>
+                                <a href="{{ url('admin/CEO/export-pdf') }}" class="btn btn-outline-danger btn-sm">
+                                    <i class="fas fa-file-pdf"></i> PDF
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="card-body">
+                            <div style="overflow-x: auto; width: 100%;">
+                                <table class="table table-bordered" style="white-space: nowrap;">
+                                    <thead class="text-center">
+                                        <tr>
+                                            <th>#</th>
+                                            <th>ឈ្មោះដេប៉ាតឺម៉ង់</th>
+                                            <th>ប្រភេទសំណើ</th>
+                                            <th>កាលបរិច្ឆេទបង្កើត</th>
+                                            <th>អ្នកអនុញ្ញាត</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($getRecord as $item)
+                                            <tr>
+                                                <td>{{ $loop->iteration }}</td>
+                                                <td>
+                                                    @if($item->dapartment_id== '2') 
+                                                        <span class="dept-it">ដេប៉ាតឺម៉ង់ IT</span>
+                                                    @elseif($item->dapartment_id == '1')
+                                                        <span class="dept-sales">ដេប៉ាតឺម៉ង់ Sales</span>
+                                                    @else
+                                                        {{ $item->dapartment_name }}
+                                                    @endif
+                                                </td>                      
+                                                <td>
+                                                    @if($item->type_request_id== '2') 
+                                                        <span class="req-leave">Mession</span>
+                                                    @elseif($item->type_request_id == '1')
+                                                        <span class="req-mession">Leave</span>
+                                                    @else
+                                                        {{ $item->dapartment_name }}
+                                                    @endif
+                                                </td>                                
+                                                <td>{{ $item->created_at->format('d-m-Y H:i A') }}</td>
+                                                <td>
+                                                    {{$item->created_by_name}} {{$item->created_by_last_name}} 
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- Pagination -->
+                            <div class="d-flex justify-content-end mt-3">
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </section>
+    </div>
+@endsection

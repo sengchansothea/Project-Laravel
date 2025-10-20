@@ -10,6 +10,7 @@ class AdminController extends Controller
 {
     public function list()
     {
+        
         $data['getRecord'] = User::getAdmin();
         $data['header_title'] = "Admin List";
         return view('admin.admin.list', $data);
@@ -56,12 +57,13 @@ class AdminController extends Controller
 
     public function update($id, Request $request)
     {
-         request()->validate([
+        request()->validate([
             'email' => 'required|email|unique:users,email,'.$id
         ]);
 
         $user = User::getSingle($id);
         $user->name = trim($request->name);
+        $user->last_name = trim($request->last_name);
         $user->email = trim($request->email);
         if(!empty($request->password))
         {

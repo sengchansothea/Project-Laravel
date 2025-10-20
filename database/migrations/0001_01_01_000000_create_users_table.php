@@ -18,10 +18,9 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->bigInteger('department_id')->nullable();
             $table->string('is_active')->default(0)->comment('1=inactive,0=active');
             $table->rememberToken();
-            $table->tinyInteger('user_type')->comment('4=teamLeader,3=CFO,2=HR,1=CEO'); // 1=sys Administrator; 2= dept Administrator; 3= leave/mession Aoorover; 4=employee/user
+            $table->tinyInteger('user_type')->comment('1=System_Admin,2=Dept_Admin,3=CEO,4=HR_Manager,5=CFO,6=TeamLeader,7=Employee');
             $table->tinyInteger('status')->default(1)->comment('1=inactive,0=active');
             $table->tinyInteger('is_deleted')->default(0);     
             $table->timestamps();

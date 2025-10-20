@@ -75,10 +75,10 @@
                                             <label>ស្ថានភាព<span style="color: red">*</span></label>
                                             <select name="status" class="form-control">
                                                 <option value="">សូមជ្រើសរើស</option>
-                                                <option {{ old('status') == '0' ? 'selected' : '' }} value="0">សកម្ម
+                                                <option {{ old('status') == '0' ? 'selected' : '' }} value="0">បានអនុម័ត
                                                 </option>
                                                 <option {{ old('status') == '1' ? 'selected' : '' }} value="1">
-                                                    អសកម្ម</option>
+                                                    កំពុងរង់ចាំ</option>
                                             </select>
                                             <div style="color:red;">{{ $errors->first('status') }}</div>
                                         </div>

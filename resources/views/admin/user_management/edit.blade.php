@@ -83,7 +83,7 @@
                                             <label>ស្ថានភាព</label>
                                             <select name="status" class="form-control">
                                                 <option value="">សូមជ្រើសរើស</option>
-                                                <option {{ ($getRecord->status == '0') ? 'selected' : '' }} value="0">អនុម័ត</option>
+                                                <option {{ ($getRecord->status == '0') ? 'selected' : '' }} value="0">បានអនុម័ត</option>
                                                 <option {{ ($getRecord->status == '1') ? 'selected' : '' }} value="1">កំពុងរង់ចាំ</option>
                                             </select>
                                             <div style="color:red;">{{ $errors->first('status') }}</div>

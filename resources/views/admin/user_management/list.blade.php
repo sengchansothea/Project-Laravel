@@ -2,6 +2,26 @@
 
 @section('style')
     <style>
+        .img-circle {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            /* កាត់ជារង្វង់ */
+            object-fit: cover;
+            /* កាត់អោយស្មើ */
+            display: block;
+            /* កែ inline element → block */
+            margin-left: auto;
+            /* ចំកណ្ដាលផ្ដេក */
+            margin-right: auto;
+        }
+
+        td.center-image {
+            text-align: center;
+            /* កណ្ដាលផ្ដេក */
+            vertical-align: middle;
+            /* កណ្ដាលឈរ */
+        }
         /* Table Design */
         .table {
             border-collapse: separate;
@@ -164,8 +184,8 @@
                                             <label>ស្ថានភាព</label>
                                             <select name="status" class="form-control">
                                                 <option value="">សូមជ្រើសរើស</option>
-                                                <option {{ Request::get('status') == '0' ? 'selected' : '' }} value="0">សកម្ម</option>
-                                                <option {{ Request::get('status') == '1' ? 'selected' : '' }} value="1">អសកម្ម</option>
+                                                <option {{ Request::get('status') == '0' ? 'selected' : '' }} value="0">បានអនុម័ត</option>
+                                                <option {{ Request::get('status') == '1' ? 'selected' : '' }} value="1">កំពុងរង់ចាំ</option>
                                             </select>
                                         </div>
                                         <div class="form-group col-md-3">
@@ -211,6 +231,7 @@
                             <thead class="text-center">
                                 <tr>
                                     <th>#</th>
+                                    <th>រួបភាព</th>
                                     <th>ឈ្មោះ</th>
                                     <th>អ៊ីមែល</th>
                                     <th>តួនាទី</th>
@@ -224,9 +245,16 @@
                                 @foreach ($getRecord as $admin)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
+                                        <td class="center-image">
+                                                @if (!empty($admin->getProfile()))
+                                                    <a href="{{ url('admin/profile', ['id' => $admin->id]) }}">
+                                                        <img src="{{ $admin->getProfile() }}" class="img-circle">
+                                                    </a>
+                                                @endif
+                                            </td>
                                         <td>{{ $admin->name }} {{ $admin->last_name }}</td>
                                         <td>{{ $admin->email }}</td>
-                                        <td>{{ $admin->role_name }}</td>
+                                        <td>{{ $admin->user_type}}</td>
                                         <td>{{ $admin->department_name ?? '-' }}</td>
                                         <td>
                                             <small class="{{ $admin->status == 0 ? 'status-active' : 'status-inactive' }}">
