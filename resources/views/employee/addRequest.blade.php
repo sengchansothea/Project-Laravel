@@ -55,11 +55,13 @@
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label>ប្រភេទនៃសំណើរ<span style="color: red">*</span></label>
-                                            <select name="type_request" class="form-control">
+                                            <select name="type_request_id" class="form-control">
                                                 <option value="">ជ្រើសរើសប្រភេទនៃសំណើរ</option>
-                                                <option {{ (old('type_request') == 'Leave') ? 'selected' : '' }} value="Leave">សុំច្បាប់ឈប់សម្រាក</option>
-                                                <option {{ (old('type_request') == 'Mession') ? 'selected' : '' }} value="Mession">ស្មើសុំបេសកម្ម</option>
+                                                @foreach ($getTypeRequest as $request)
+                                                    <option {{old('type_request_id') == $request->id ? 'selected' : ''}} value="{{$request->id}}">{{$request->name}}</option>
+                                                @endforeach
                                             </select>
+                                            
                                             <div style="color:red;">{{ $errors->first('type_request') }}</div>
                                         </div>
                                         <div class="form-group col-md-6">

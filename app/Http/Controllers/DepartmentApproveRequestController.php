@@ -167,8 +167,28 @@ class DepartmentApproveRequestController extends Controller
 
     static function MyDepartmentTypeRequest()
     {
-        $data['getRecord'] = DepartmentApproveRequestModel::getMyDepartmentTypeRequest(Auth::user()->id);
+        $data['getRecord'] = User::getSingle(Auth::user()->id);
         $data['header_title'] = "My Department & TypeRequest";
-        return view('teamLeader.my_department_type_request', $data);
+        if(Auth::user() ->user_type == 3)
+        {
+            $data['getRecord'] = DepartmentApproveRequestModel::getMyDepartmentTypeRequest(Auth::user()->id);
+            return view('CEO.my_department_type_request', $data);
+        }
+        else if(Auth::user() ->user_type == 4)
+        {
+            $data['getRecord'] = DepartmentApproveRequestModel::getMyDepartmentTypeRequest(Auth::user()->id);
+            return view('HR_manager.my_department_type_request', $data);
+        }
+        else if(Auth::user() ->user_type == 5)
+        {
+            $data['getRecord'] = DepartmentApproveRequestModel::getMyDepartmentTypeRequest(Auth::user()->id);
+            return view('CFO.my_department_type_request', $data);
+        }
+        else if(Auth::user() ->user_type == 6)
+        {
+            $data['getRecord'] = DepartmentApproveRequestModel::getMyDepartmentTypeRequest(Auth::user()->id);
+            return view('teamLeader.my_department_type_request', $data);
+        }
+       
     }
 }

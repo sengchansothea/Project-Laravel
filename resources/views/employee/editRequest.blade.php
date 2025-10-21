@@ -54,22 +54,31 @@
                                             <div style="color:red;">{{ $errors->first('phone_number') }}</div>
                                         </div>
                                         <div class="form-group col-md-6">
-                                            <label>ប្រភេទនៃសុំណើរ<span style="color: red">*</span></label>
-                                            <select name="type_request" class="form-control">
+                                            <label>ប្រភេទនៃសំណើរ</label>
+                                            <select name="type_request_id" class="form-control">
                                                 <option value="">ជ្រើសរើសប្រភេទនៃសំណើរ</option>
-                                                <option {{ ($getRecord->type_request == 'Leave') ? 'selected' : '' }} value="Leave">សុំច្បាប់ឈប់សម្រាក</option>
-                                                <option {{ ($getRecord->type_request == 'Mession') ? 'selected' : '' }} value="Mession">ស្មើសុំបេសកម្ម</option>
+                                                @foreach ($getTypeRequest as $request)
+                                                    <option value="{{ $request->id }}" {{ $getRecord->type_request_id == $request->id ? 'selected' : '' }}>
+                                                        {{ $request->name }}
+                                                    </option>
+                                                @endforeach
                                             </select>
-                                            <div style="color:red;">{{ $errors->first('type_request') }}</div>
+                                            <div style="color: red">{{$errors->first('type_request_id')}}</div>
                                         </div>
+
                                         <div class="form-group col-md-6">
-                                            <label>រូបភាព Profile</label>
-                                            <input type="file" class="form-control" name="profile_pic">
-                                            <div style="color:red;">{{ $errors->first('profile_pic') }}</div>
-                                            @if (!empty($getRecord->getProfile()))
-                                                <img src="{{$getRecord->getProfile() }}" style="width:auto;height:50px">
-                                            @endif
+                                            <label>ដេប៉ាតឺម៉ង់</label>
+                                            <select name="department_id" class="form-control">
+                                                <option value="">ជ្រើសរើសដេប៉ាតីម៉ង់</option>
+                                                @foreach ($getDepartment as $item)
+                                                    <option value="{{ $item->id }}" {{ $getRecord->department_id == $item->id ? 'selected' : '' }}>
+                                                        {{ $item->name }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                            <div style="color: red">{{$errors->first('department_id')}}</div>
                                         </div>
+
                                         <div class="form-group col-md-6">
                                             <label>រយៈពេល<span style="color: red">*</span></label>
                                             <textarea name="time" class="form-control" cols="20" rows="10" style="height: 76px;">{{ old('time', $getRecord->time) }}</textarea>

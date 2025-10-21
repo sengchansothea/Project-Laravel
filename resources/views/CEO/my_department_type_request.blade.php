@@ -2,8 +2,7 @@
 
 @section('style')
     <style>
-        /* Type Request Tag Style */
-        .req-leave, .req-overtime, .req-other {
+         .req-leave, .req-mession {
             font-size: 13px;
             padding: 4px 12px;
             border-radius: 6px;
@@ -21,17 +20,10 @@
         }
 
         /* Overtime Request */
-        .req-overtime {
+        .req-mession {
             background-color: #e3f2fd; /* ផ្ទៃខៀវខ្ចី */
             color: #0d47a1; /* អក្សរខៀវ */
             border: 1px solid #90caf9;
-        }
-
-        /* Other Request */
-        .req-other {
-            background-color: #f3e5f5; /* ផ្ទៃស្វាយខ្ចី */
-            color: #4a148c; /* អក្សរស្វាយ */
-            border: 1px solid #ce93d8;
         }
 
         .img-circle {
@@ -179,7 +171,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>CFO Request List<small style="color: rgb(0, 60, 255)"></small></h1>
+                        <h1>My departments & Type Request<small style="color: rgb(0, 60, 255)"></small></h1>
                     </div>
                 </div>
             </div>
@@ -188,13 +180,12 @@
         <!-- Main content -->
         <section class="content">
             <div class="container-fluid">
-                
 
                 @include('message')
 
                 <div class="card card-purple">
                         <div class="card-header">
-                            <h3 class="card-title">List Request</h3>
+                            <h3 class="card-title">My departments & Type Request</h3>
                             <div class="card-tools text-right mb-2">
                                 <a href="{{ url('admin/CEO/export-csv') }}" class="btn btn-outline-primary btn-sm">
                                     <i class="fas fa-file-csv"></i> CSV
@@ -214,78 +205,37 @@
                                     <thead class="text-center">
                                         <tr>
                                             <th>#</th>
-                                            <th>លេខសម្គាល់</th>
-                                            <th>រួបភាព</th>
-                                            <th>ឈ្មោះ</th>
-                                            <th>ភេទ</th>
-                                            <th>តួនាទី</th>
-                                            <th>លេខទូរស័ព្ទ</th>
-                                            <th>ដេប៉ាតឺម៉ង់</th>
+                                            <th>ឈ្មោះដេប៉ាតឺម៉ង់</th>
                                             <th>ប្រភេទសំណើ</th>
                                             <th>កាលបរិច្ឆេទបង្កើត</th>
-                                            <th>ស្ថានភាព</th>
-                                            <th>សកម្មភាព</th>
+                                            <th>អ្នកអនុញ្ញាត</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($getUserApproveDepartmentRequest as $employee)
+                                        @foreach ($getRecord as $item)
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
-                                                <td>{{ $employee->user_id}}</td>
-                                                <td class="center-image">
-                                                    @if (!empty($employee->getProfile()))
-                                                        <a href="{{ url('admin/profile', ['id' => $employee->id]) }}">
-                                                            <img src="{{ $employee->getProfile() }}" class="img-circle">
-                                                        </a>
-                                                    @endif
-                                                </td>
-                                                <td>{{ $employee->name }} {{ $employee->last_name }}</td>
-                                                <td>{{ $employee->gender == 'Male' ? 'ប្រុស' : ($employee->gender == 'Female' ? 'ស្រី' : 'មិនបានបញ្ជាក់') }}</td>
                                                 <td>
-                                                    @if ($employee->user_type == '7')
-                                                        <span>Employee</span>
-                                                    @elseif($employee->user_type =='6')
-                                                        <span>TeamLeader</span>
-                                                    @elseif($employee->user_type =='5')
-                                                        <span>CFO</span>
-                                                    @elseif($employee->user_type =='4')
-                                                        <span>HR Manager</span>
-                                                    @endif
-                                                </td>
-                                                <td>{{ $employee->phone_number }}</td>
-                                                <td>
-                                                    @if($employee->department_id == '2') 
+                                                    @if($item->dapartment_id== '2') 
                                                         <span class="dept-it">ដេប៉ាតឺម៉ង់ IT</span>
-                                                    @elseif($employee->department_id == '1')
+                                                    @elseif($item->dapartment_id == '1')
                                                         <span class="dept-sales">ដេប៉ាតឺម៉ង់ Sales</span>
                                                     @else
-                                                        {{ $employee->department_name }}
+                                                        {{ $item->dapartment_name }}
                                                     @endif
-                                                </td>
+                                                </td>                      
                                                 <td>
-                                                    @if ($employee->type_request_id == '1')
+                                                    @if($item->type_request_id== '2') 
+                                                        <span class="req-mession">Mession</span>
+                                                    @elseif($item->type_request_id == '1')
                                                         <span class="req-leave">Leave</span>
-                                                    @elseif ($employee->type_request_id == '2')
-                                                        <span class="req-overtime">Mession</span>
                                                     @else
-                                                        <span class="req-other">{{ $employee->type_request_id}}</span>
+                                                        {{ $item->dapartment_name }}
                                                     @endif
                                                 </td>                                
-                                                <td>{{ $employee->created_at->format('d-m-Y H:i A') }}</td>
+                                                <td>{{ $item->created_at->format('d-m-Y H:i A') }}</td>
                                                 <td>
-                                                    @if ($employee->status == 0 )
-                                                        <small class="status-active">បានអនុម័ត</small>
-                                                    @elseif ($employee->status == 1)
-                                                        <small class="status-inactive">កំពុងរង់ចាំ</small>
-                                                    @elseif ($employee->status == 2)
-                                                        <small class="status-inactive">បានបដិសេដ</small>
-                                                    @endif
-
-                                                </td>
-                                                <td>
-                                                    <a href="{{ url('CFO/myRequest/approveRequest/' . $employee->id) }}" class="btn btn-primary btn-sm">
-                                                        <i class="fas fa-edit"></i> Approve 
-                                                    </a>
+                                                    {{$item->created_by_name}} {{$item->created_by_last_name}} 
                                                 </td>
                                             </tr>
                                         @endforeach

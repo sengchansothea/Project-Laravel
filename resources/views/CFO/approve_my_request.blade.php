@@ -86,7 +86,7 @@
                                 </div>
                                 
                                 <div class="card-footer">
-                                    <a href="{{ url('CEO/myRequest') }}" class="btn btn-danger">បោះបង់</a>
+                                    <a href="{{ url('CFO/myRequest') }}" class="btn btn-danger">បោះបង់</a>
                                     <button type="submit" class="btn btn-primary">ដាក់បញ្ចូល</button>
                                 </div>
                             </form>

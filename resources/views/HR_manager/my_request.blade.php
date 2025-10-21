@@ -188,60 +188,6 @@
         <!-- Main content -->
         <section class="content">
             <div class="container-fluid">
-                {{-- <!-- Filter Form -->
-                <div class="row mb-3">
-                    <div class="col-md-12">
-                        <div class="card card-lightblue">
-                            <div class="card-header">
-                                <h3 class="card-title">Search Request List</h3>
-                            </div>
-                            <form action="" method="get">
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="form-group col-md-2">
-                                            <label>គោត្តនាមនិងនាម</label>
-                                            <input type="text" value="{{ Request::get('name') }}" name="name"
-                                                class="form-control" placeholder="ឈ្មោះ ឬ នាមត្រកូល">
-                                        </div>
-                                        <div class="form-group col-md-2">
-                                            <label>អ៊ីមែល</label>
-                                            <input type="text" value="{{ Request::get('email') }}" name="email"
-                                                class="form-control" placeholder="អ៊ីមែល">
-                                        </div>
-                                        <div class="form-group col-md-2">
-                                            <label>ដេប៉ាតឺម៉ង់<span style="color: red">*</span></label>
-                                            <select name="department_id" class="form-control">
-                                                <option value="">ជ្រើសរើសដេប៉ាតឺម៉ង់</option>
-                                                <option {{ (Request::get('department_id') == '1') ? 'selected' : '' }} value="1">ដេប៉ាតឺម៉ង់ IT</option>
-                                                <option {{ (Request::get('department_id') == '2') ? 'selected' : '' }} value="2">ដេប៉ាតឺម៉ង់ Sales</option>
-                                                <option {{ (Request::get('department_id') == 'Other') ? 'selected' : '' }}value="Other">ផ្សេងៗ</option>
-                                            </select>
-                                            <div style="color:red;">{{ $errors->first('gender') }}</div>
-                                        </div>
-                                        <div class="form-group col-md-2">
-                                            <label>តួនាទី</label>
-                                            <select name="user_type" class="form-control">
-                                                <option value="">សូមជ្រើសរើស</option>
-                                                <option {{ Request::get('user_type') == '4' ? 'selected' : '' }} value="4">HR Manager</option>
-                                                <option {{ Request::get('user_type') == '5' ? 'selected' : '' }} value="5">CFO</option>
-                                                <option {{ Request::get('user_type') == '6' ? 'selected' : '' }} value="6">TeamLeader</option>
-                                                <option {{ Request::get('user_type') == '7' ? 'selected' : '' }} value="7">Employee</option>
-                                            </select>
-                                        </div>
-                                        <div class="form-group col-md-2 text-left">
-                                            <button type="submit" style="margin-top: 32px;" class="btn btn-primary">
-                                                <i class="fas fa-search"></i> ស្វែងរក
-                                            </button>
-                                            <a href="{{url('CEO/myApprove')}}" class="btn btn-success" style="margin-top: 32px;">
-                                                <i class="fas fa-sync-alt"></i> កំណត់ឡើងវិញ
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div> --}}
 
                 @include('message')
 
@@ -272,7 +218,6 @@
                                             <th>ឈ្មោះ</th>
                                             <th>ភេទ</th>
                                             <th>តួនាទី</th>
-                                            <th>អ៊ីមែល</th>
                                             <th>លេខទូរស័ព្ទ</th>
                                             <th>ដេប៉ាតឺម៉ង់</th>
                                             <th>ប្រភេទសំណើ</th>
@@ -282,7 +227,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($getSearchApporveHR as $employee)
+                                        @foreach ($getUserApproveDepartmentRequest as $employee)
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
                                                 <td>{{ $employee->user_id}}</td>
@@ -306,22 +251,21 @@
                                                         <span>HR Manager</span>
                                                     @endif
                                                 </td>
-                                                <td>{{ $employee->user_email }}</td>
                                                 <td>{{ $employee->phone_number }}</td>
                                                 <td>
-                                                    @if($employee->department_name == 'Department IT') 
+                                                    @if($employee->department_id == '2') 
                                                         <span class="dept-it">ដេប៉ាតឺម៉ង់ IT</span>
-                                                    @elseif($employee->department_name == 'Department Sales')
+                                                    @elseif($employee->department_id == '1')
                                                         <span class="dept-sales">ដេប៉ាតឺម៉ង់ Sales</span>
                                                     @else
                                                         {{ $employee->department_name }}
                                                     @endif
                                                 </td>
                                                 <td>
-                                                    @if ($employee->type_request == 'Leave')
-                                                        <span class="req-leave">សុំច្បាប់</span>
-                                                    @elseif ($employee->type_request == 'Mession')
-                                                        <span class="req-overtime">ស្នើសុំបេសកម្ម</span>
+                                                    @if ($employee->type_request_id == '1')
+                                                        <span class="req-leave">Leave</span>
+                                                    @elseif ($employee->type_request_id == '2')
+                                                        <span class="req-overtime">Mession</span>
                                                     @else
                                                         <span class="req-other">{{ $employee->type_request }}</span>
                                                     @endif

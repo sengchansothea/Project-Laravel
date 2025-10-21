@@ -187,7 +187,7 @@ Route::group(['middleware' => 'CEO'], function () {
     Route::get('CEO/change_password', [UserController::class, 'change_password']);
     Route::post('CEO/change_password', [UserController::class, 'update_change_password']);
 
-    //Route::get('CEO/mydepartment_type_request',[DepartmentRequestController::class, 'MyDepartmentTypeRequest']);
+    Route::get('CEO/mydepartment_type_request',[DepartmentApproveRequestController::class, 'MyDepartmentTypeRequest']);
 
     Route::get('CEO/myRequest', [ApproveController::class, 'MyRequest']);
     Route::get('CEO/myRequest/approveRequest/{id}', [ApproveController::class, 'ApproveMyRequest']);
@@ -204,6 +204,8 @@ Route::group(['middleware' => 'HR_manager'], function () {
     Route::get('HR_manager/change_password', [UserController::class, 'change_password']);
     Route::post('HR_manager/change_password', [UserController::class, 'update_change_password']);
 
+    Route::get('HR_manager/mydepartment_type_request',[DepartmentApproveRequestController::class, 'MyDepartmentTypeRequest']);
+
     Route::get('HR_manager/myRequest', [ApproveController::class, 'MyRequest']);
     Route::get('HR-manager/myRequest/approveRequest/{id}', [ApproveController::class, 'ApproveMyRequestHR']);
     Route::post('HR-manager/myRequest/approveRequest/{id}', [ApproveController::class, 'ApprovedMyRequestHR']);
@@ -217,6 +219,8 @@ Route::group(['middleware' => 'CFO'], function () {
     Route::post('CFO/myAccount', [UserController::class, 'UpdateMyAccountCFO']);
     Route::get('CFO/change_password', [UserController::class, 'change_password']);
     Route::post('CFO/change_password', [UserController::class, 'update_change_password']);
+
+    Route::get('CFO/mydepartment_type_request',[DepartmentApproveRequestController::class, 'MyDepartmentTypeRequest']);
 
     Route::get('CFO/myRequest', [ApproveController::class, 'MyRequest']);
     Route::get('CFO/myRequest/approveRequest/{id}', [ApproveController::class, 'ApproveMyRequestCFO']);

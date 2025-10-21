@@ -119,7 +119,7 @@
                                 <div class="inner">
                                     <h3>អ្នកស្នើ Leave</h3>
 
-                                    <p>{{\App\Models\RequestModel::where('type_request', '=' , 'Leave')->count()}} នាក់</p>
+                                    <p></p>
                                 </div>
                                 <div class="icon">
                                     <i class="ion ion-pie-graph"></i>
@@ -134,7 +134,7 @@
                             <div class="small-box bg-info">
                                 <div class="inner">
                                     <h3>អ្នកស្មើ Mession</h3>
-                                    <p>{{\App\Models\RequestModel::where('type_request', '=' , 'Mession')->count()}} នាក់</p>
+                                    <p></p>
                                 </div>
                                 <div class="icon">
                                     <i class="ion ion-bag"></i>

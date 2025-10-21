@@ -56,15 +56,6 @@
                                             <div style="color:red;">{{ $errors->first('phone_number') }}</div>
                                         </div>
                                         <div class="form-group col-md-6">
-                                            <label>ដេប៉ាតឺម៉ង់<span style="color: red">*</span></label>
-                                            <select name="department_id" class="form-control">
-                                                <option value="">សូមជ្រើសរើស</option>
-                                                <option {{ ($getRecord->department_id == '1') ? 'selected' : '' }} value="1">ដេប៉ាតឺម៉ង់ IT</option>
-                                                <option {{ ($getRecord->department_id  == '2') ? 'selected' : '' }} value="2">ដេប៉ាតឺម៉ង់ Sales</option>
-                                            </select>
-                                            <div style="color:red;">{{ $errors->first('department_id') }}</div>
-                                        </div>
-                                        <div class="form-group col-md-6">
                                             <label>ស្ថានភាពគ្រួសារ</span></label>
                                            <select name="marital_status" class="form-control">
                                                 <option value="">ជ្រើសរើសស្ថានភាពគ្រួសារ</option>

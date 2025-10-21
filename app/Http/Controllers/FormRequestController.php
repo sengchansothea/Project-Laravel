@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\DepartmentModel;
 use Illuminate\Http\Request;
 use App\Models\RequestModel;
+use App\Models\TypeRequestModel;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 
@@ -80,6 +81,7 @@ class FormRequestController extends Controller
     public function AddRequest()
     {
         $data['user'] = Auth::user();
+        $data['getTypeRequest']= TypeRequestModel::getTypeRequest();
         $data['getDepartment'] = DepartmentModel::getDepartment();
         $data['header_title'] = "Add Request Form";
         return view('employee.addRequest', $data);
@@ -92,7 +94,6 @@ class FormRequestController extends Controller
         $user = Auth::user();
 
         $request->validate([
-            'type_request' => 'required',
             'time' => 'required|max:255',
             'reason' => 'required|max:255',
         ]);
@@ -115,10 +116,11 @@ class FormRequestController extends Controller
             $req->profile_pic = $user->profile_pic; // fallback
         }
         $req->department_id = $user->department_id;
-        $req->type_request = $request->type_request;
+        $req->type_request_id = $request->type_request_id;
         $req->time = $request->time;
         $req->reason = $request->reason;
         $req->status = 1;
+        $req->user_type = 7;
         $req->created_by = $user->id;
         $req->save();
 
@@ -131,6 +133,8 @@ class FormRequestController extends Controller
         $data['getRecord'] = RequestModel::getSingle($id);
         if(!empty($data['getRecord']))
         {
+            $data['getTypeRequest']= TypeRequestModel::getTypeRequest();
+            $data['getDepartment'] = DepartmentModel::getDepartment();
             $data['header_title'] = "Edit Employee Leader";
                 return view('employee.editRequest', $data);
         }
@@ -146,21 +150,21 @@ class FormRequestController extends Controller
         $user = Auth::user();
 
         $request->validate([
-            'type_request' => 'required',
             'time' => 'required|max:255',
             'reason' => 'required|max:255',
         ]);
-        $req = RequestModel::findOrFail($id);
+        $req = RequestModel::getSingle($id);
         $req->user_id = $user->id;
-        $req->name = $user->name;
-        $req->last_name = $user->last_name;
-        $req->gender = $user->gender;
-        $req->phone_number = $user->phone_number;
-        $req->department_id = $user->department_id;
-        $req->type_request = $request->type_request;
+        $req->name = $request->name;
+        $req->last_name = $request->last_name;
+        $req->gender = $request->gender;
+        $req->phone_number = $request->phone_number;
+        $req->department_id = $request->department_id;
+        $req->type_request_id = $request->type_request_id;
         $req->time = $request->time;
         $req->reason = $request->reason;
         $req->status = 1;
+        $req->user_type = 7;
         $req->created_by = $user->id;
         $req->save();
 

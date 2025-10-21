@@ -55,10 +55,10 @@
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label>ប្រភេទនៃសុំណើរ<span style="color: red">*</span></label>
-                                            <select name="type_request" class="form-control">
+                                            <select name="type_request_id" class="form-control">
                                                 <option value="">ជ្រើសរើសប្រភេទនៃសំណើរ</option>
-                                                <option {{ ($getRecord->type_request == 'Leave') ? 'selected' : '' }} value="Leave">សុំច្បាប់ឈប់សម្រាក</option>
-                                                <option {{ ($getRecord->type_request == 'Mession') ? 'selected' : '' }} value="Mession">ស្មើសុំបេសកម្ម</option>
+                                                <option {{ ($getRecord->type_request_id == '1') ? 'selected' : '' }} value="1">សុំច្បាប់ឈប់សម្រាក</option>
+                                                <option {{ ($getRecord->type_request_id == '2') ? 'selected' : '' }} value="2">ស្មើសុំបេសកម្ម</option>
                                             </select>
                                             <div style="color:red;">{{ $errors->first('type_request') }}</div>
                                         </div>
@@ -86,7 +86,7 @@
                                 </div>
                                 
                                 <div class="card-footer">
-                                    <a href="{{ url('CEO/myRequest') }}" class="btn btn-danger">បោះបង់</a>
+                                    <a href="{{ url('teamleader/myRequest') }}" class="btn btn-danger">បោះបង់</a>
                                     <button type="submit" class="btn btn-primary">ដាក់បញ្ចូល</button>
                                 </div>
                             </form>

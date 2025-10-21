@@ -14,26 +14,27 @@ class ApproveController extends Controller
 {
     public function MyRequest()
     {
+        
         $data['getRecord'] = User::getSingle(Auth::user()->id);
-        $data['header_title'] = "My Request";
+        $data['header_title'] = "My Request Approve";
         if(Auth::user() ->user_type == 3)
         {
-            $data['getSearchEmployee'] = ApprovedModel::getSearchEmployee(Auth::user()->id);
+            $data['getUserApproveDepartmentRequest'] = ApprovedModel::getUserApproveDepartmentRequest(Auth::user()->id);
             return view('CEO.my_request',$data);
         }
         else if(Auth::user() ->user_type == 4)
         {
-            $data['getSearchApporveHR'] = ApprovedModel::getSearchApporveHR(Auth::user()->id);
+            $data['getUserApproveDepartmentRequest'] = ApprovedModel::getUserApproveDepartmentRequest(Auth::user()->id);
             return view('HR_manager.my_request',$data);
         }
         else if(Auth::user() ->user_type == 5)
         {
-            $data['getSearchApporveCFO'] = ApprovedModel::getSearchApporveCFO(Auth::user()->id);
+            $data['getUserApproveDepartmentRequest'] = ApprovedModel::getUserApproveDepartmentRequest(Auth::user()->id);
             return view('CFO.my_request',$data);
         }
         else if(Auth::user() ->user_type == 6)
         {
-            $data['getSearchApporveTL'] = ApprovedModel::getSearchApporveTL(Auth::user()->id);
+            $data['getUserApproveDepartmentRequest'] = ApprovedModel::getUserApproveDepartmentRequest(Auth::user()->id);
             return view('teamleader.my_request',$data);
         }
     }
@@ -53,10 +54,8 @@ class ApproveController extends Controller
     
     public function ApprovedRequest($id, Request $request)
     {
+        //dd($request->all());
         $request->validate([
-            'gender' => 'required|string|max:10',
-            'phone_number' => 'required|string|max:20',
-            'type_request' => 'required|string|max:255',
             'time' => 'required|max:255',
             'reason' => 'required|max:255',
         ]);
@@ -68,7 +67,7 @@ class ApproveController extends Controller
         $req->last_name = $request->last_name;
         $req->gender = $request->gender;
         $req->phone_number = $request->phone_number;
-        $req->type_request = $request->type_request;
+        $req->type_request_id = $request->type_request_id;
         $req->time = $request->time;
         $req->reason = $request->reason;
         $req->status = $request->status;
@@ -98,9 +97,6 @@ class ApproveController extends Controller
     {
         //dd($request->all());
         $request->validate([
-            'gender' => 'required|string|max:10',
-            'phone_number' => 'required|string|max:20',
-            'type_request' => 'required|string|max:255',
             'time' => 'required|max:255',
             'reason' => 'required|max:255',
         ]);
@@ -112,7 +108,7 @@ class ApproveController extends Controller
         $req->last_name = $request->last_name;
         $req->gender = $request->gender;
         $req->phone_number = $request->phone_number;
-        $req->type_request = $request->type_request;
+        $req->type_request_id = $request->type_request_id;
         $req->time = $request->time;
         $req->reason = $request->reason;
         $req->status = $request->status;
@@ -130,7 +126,7 @@ class ApproveController extends Controller
         if(!empty($data['getRecord']))
         {
             $data['header_title'] = "Approve My Request";
-                return view('HR_manager.approve_my_request', $data);
+                return view('CFO.approve_my_request', $data);
         }
         else
         {
@@ -141,9 +137,6 @@ class ApproveController extends Controller
     public function ApprovedMyRequestCFO($id, Request $request)
     {
         $request->validate([
-            'gender' => 'required|string|max:10',
-            'phone_number' => 'required|string|max:20',
-            'type_request' => 'required|string|max:255',
             'time' => 'required|max:255',
             'reason' => 'required|max:255',
         ]);
@@ -155,7 +148,7 @@ class ApproveController extends Controller
         $req->last_name = $request->last_name;
         $req->gender = $request->gender;
         $req->phone_number = $request->phone_number;
-        $req->type_request = $request->type_request;
+        $req->type_request_id = $request->type_request_id;
         $req->time = $request->time;
         $req->reason = $request->reason;
         $req->status = $request->status;
@@ -183,9 +176,8 @@ class ApproveController extends Controller
 
     public function ApprovedMyRequestTL($id, Request $request)
     {
+        //dd($request->all());
         $request->validate([
-            'gender' => 'required|string|max:10',
-            'phone_number' => 'required|string|max:20',
             'type_request' => 'required|string|max:255',
             'time' => 'required|max:255',
             'reason' => 'required|max:255',
@@ -198,7 +190,7 @@ class ApproveController extends Controller
         $req->last_name = $request->last_name;
         $req->gender = $request->gender;
         $req->phone_number = $request->phone_number;
-        $req->type_request = $request->type_request;
+        $req->type_request_id = $request->type_request_id;
         $req->time = $request->time;
         $req->reason = $request->reason;
         $req->status = $request->status;

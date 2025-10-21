@@ -247,12 +247,12 @@
                                             <td>{{ $employee->gender == 'Male' ? 'ប្រុស' : ($employee->gender == 'Female' ? 'ស្រី' : 'មិនបានបញ្ជាក់') }}</td>
                                             <td>{{ $employee->phone_number }}</td>  
                                             <td>
-                                                @if($employee->department_name == 'Department IT') 
+                                                @if($employee->department_id == '2') 
                                                     <span class="dept-it">ដេប៉ាតឺម៉ង់ IT</span>
-                                                @elseif($employee->department_name == 'Department Sales')
+                                                @elseif($employee->department_id == '1')
                                                     <span class="dept-sales">ដេប៉ាតឺម៉ង់ Sales</span>
                                                 @else
-                                                    {{ $employee->department_name }}
+                                                    {{ $employee->department_id }}
                                                 @endif
                                             </td>
                                             <td>
@@ -265,9 +265,9 @@
                                                 @endif
                                             </td>
                                             <td>
-                                                @if ($employee->type_request == 'Leave')
+                                                @if ($employee->type_request_id == '1')
                                                     <span class="req-leave">សុំច្បាប់</span>
-                                                @elseif ($employee->type_request == 'Overtime')
+                                                @elseif ($employee->type_request_id == '2')
                                                     <span class="req-overtime">សុំម៉ោងបន្ថែម</span>
                                                 @else
                                                     <span class="req-other">{{ $employee->type_request }}</span>

@@ -266,12 +266,21 @@
                         </a>
                     </li>
                 @elseif (Auth::user()->user_type == 3)
-                    <li class="nav-item menu-open">
+                    <li class="nav-item">
                         <a href="{{ url('CEO/dashboard') }}"
                             class="nav-link  @if (Request::segment(2) == 'dashboard') active @endif">
                             <i class="nav-icon fas fa-tachometer-alt"></i>
                             <p>
                                 ផ្ទាំងគ្រប់គ្រង
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ url('CEO/mydepartment_type_request') }}"
+                            class="nav-link  @if (Request::segment(2) == 'mydepartment_type_request') active @endif">
+                            <i class="nav-icon fa-solid fa-user"></i>
+                            <p>
+                                ដេប៉ាតឺម៉ង់ និង​​ សំណើរ
                             </p>
                         </a>
                     </li>
@@ -312,12 +321,21 @@
                         </a>
                     </li>
                 @elseif (Auth::user()->user_type == 4)
-                    <li class="nav-item menu-open">
+                    <li class="nav-item">
                         <a href="{{ url('HR_manager/dashboard') }}"
                             class="nav-link  @if (Request::segment(2) == 'dashboard') active @endif">
                             <i class="nav-icon fas fa-tachometer-alt"></i>
                             <p>
                                 ផ្ទាំងគ្រប់គ្រង
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ url('HR_manager/mydepartment_type_request') }}"
+                            class="nav-link  @if (Request::segment(2) == 'mydepartment_type_request') active @endif">
+                            <i class="nav-icon fa-solid fa-user"></i>
+                            <p>
+                                ដេប៉ាតឺម៉ង់ និង​​ សំណើរ
                             </p>
                         </a>
                     </li>
@@ -358,12 +376,21 @@
                         </a>
                     </li>
                 @elseif (Auth::user()->user_type == 5)
-                    <li class="nav-item menu-open">
+                    <li class="nav-item">
                         <a href="{{ url('CFO/dashboard') }}"
                             class="nav-link  @if (Request::segment(2) == 'dashboard') active @endif">
                             <i class="nav-icon fas fa-tachometer-alt"></i>
                             <p>
                                 ផ្ទាំងគ្រប់គ្រង
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ url('CFO/mydepartment_type_request') }}"
+                            class="nav-link  @if (Request::segment(2) == 'mydepartment_type_request') active @endif">
+                            <i class="nav-icon fa-solid fa-user"></i>
+                            <p>
+                                ដេប៉ាតឺម៉ង់ និង​​ សំណើរ
                             </p>
                         </a>
                     </li>
